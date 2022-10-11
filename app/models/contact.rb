@@ -36,6 +36,8 @@ class Contact < ApplicationRecord
             format: { with: /\+[1-9]\d{1,14}\z/, message: I18n.t('errors.contacts.phone_number.invalid') }
   validates :name, length: { maximum: 255 }
 
+  has_encrypted :phone_number
+
   belongs_to :account
   has_many :conversations, dependent: :destroy_async
   has_many :contact_inboxes, dependent: :destroy_async
